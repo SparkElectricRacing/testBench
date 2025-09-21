@@ -1,10 +1,25 @@
 import Image from "next/image";
+import Reader from "../src/components/reader.tsx"
 
 export default function Page() {
+  const getReaders = () => {
+    // TODO: Read arr from somewhere
+    const arr = []
+
+    for (let i = 0; i < 5; ++i) {
+      arr.push(<Reader key={i} name={i}/>)
+    }
+
+    return arr;
+  }
   return (
-    <body>
-      <h1>Hello SPARK!</h1>
-      <Image src="/sparklogovector.svg" alt="SPARK Logo" width="200" height="200"/>
-    </body>
+    <>
+      <head>
+        <title>CAN Testbench</title>
+      </head>
+      <body>
+        <section id="grid">{getReaders()}</section>
+      </body>
+    </>
   );
 }
