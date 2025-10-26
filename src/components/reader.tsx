@@ -1,9 +1,10 @@
 import Box from "./box.tsx"
 
-export default function Header(props) {
+export default function Reader({head, value}) {
 	return (
-		<Box header={props.name}>
-			<p>Placeholder</p>
+		<Box header={head}>
+			{value}
 		</Box>
+			
 	);
 }

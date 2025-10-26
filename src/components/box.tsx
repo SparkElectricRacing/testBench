@@ -1,9 +1,9 @@
-export default function Box(props) {
+export default function Box({header, children}) {
   return (
     <div className="reader floatbox">
-      <h1>{props.header}</h1>
+      <h1>{header}</h1>
       <div>
-        {props.children}
+        {children}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ export default function Page() {
     const arr = []
 
     for (let i = 0; i < 5; ++i) {
-      arr.push(<Reader key={i} name={i}/>)
+      arr.push(<Reader head={i} value={i}/>)
     }
 
     return arr;
