@@ -9,26 +9,63 @@ import json
 
 app = Flask(__name__)
 
-
-@app.route("/dbc")
-def parse():
+@app.route('/api/dbc')
+def fullList():
     db = cantools.database.load_file('20240625_Gen5_CAN_DB.dbc')
-    
-    
+    dict = {}
+    for i in db.messages:
+        sigs = {}
+        for j in i.signals:
+            data = {}
 
-    # msg = ""
-    # for i in db.messages:
-    #     msg += str(i) + '<br>'
+            convmin = j.minimum
+            convmax = j.maximum
+            convscale = j.scale
 
-    # msg += '<br>'
+            if convmin is None or convscale is None:
+                convmin = None
+            else:
+                convmin = (convmin * convscale) + j.offset
+
+            if convmax is None or convscale is None:
+                convmax = None
+            else:
+                convmax = (convmax * convscale) + j.offset
+            
+
+
+            
+
+            data.update({"units": j.unit, 
+                        "raw min": j.minimum, 
+                        "raw max": j.maximum,
+                        "conv min": convmin, 
+                        "conv max" : convmax})
+            sigs.update({j.name: data})
+        dict.update({i.name: sigs})
+
+    
 
     # for i in db.nodes:
     #     msg += str(i) + '<br>'
 
+    return dict
+
+
+
+@app.route("/api/dbc/example")
+def parse():
+    db = cantools.database.load_file('20240625_Gen5_CAN_DB.dbc')
+    
+    
+    
+
+    
+
     data = db.encode_message("M165_Motor_Position_Info", {"INV_Delta_Resolver_Filtered": 0, "INV_Electrical_Output_Frequency": 0, "INV_Motor_Speed": 14390, "INV_Motor_Angle_Electrical": 0})
     return f"{can.Message(arbitration_id=db.get_message_by_name("M165_Motor_Position_Info").frame_id, is_extended_id=db.get_message_by_name("M165_Motor_Position_Info").is_extended_frame, data = data)}"
 
-@app.route("/api/send")
+@app.route("/api/dbc/send")
 def send():
     # bus = can.interface.Bus(interface='pcan', channel='PCAN_USBBUS1', bitrate=500000)
     message = can.Message(arbitration_id=0xA5, data=[0, 0, 54, 56, 0, 0, 0, 0], is_extended_id=False)

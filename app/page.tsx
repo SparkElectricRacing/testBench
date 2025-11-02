@@ -1,24 +1,14 @@
 import Image from "next/image";
-import Reader from "../src/components/reader.tsx"
+import Board from '../src/components/board'
 
 export default function Page() {
-  const getReaders = () => {
-    // TODO: Read arr from somewhere
-    const arr = []
-
-    for (let i = 0; i < 5; ++i) {
-      arr.push(<Reader head={i} value={i}/>)
-    }
-
-    return arr;
-  }
   return (
     <>
       <head>
         <title>CAN Testbench</title>
       </head>
       <body>
-        <section id="grid">{getReaders()}</section>
+        <section id="grid">{<Board/>}</section>
       </body>
     </>
   );

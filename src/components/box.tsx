@@ -1,4 +1,4 @@
-export default function Box({header, children}) {
+export default function Box({header, children}:{header:any, children: any}) {
   return (
     <div className="reader floatbox">
       <h1>{header}</h1>

@@ -21,5 +21,7 @@
     "@types/react-dom": "^19",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4"
-  }
+  },
+  "proxy": "http://127.0.0.1:5000"
+
 }

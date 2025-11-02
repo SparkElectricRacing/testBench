@@ -1,6 +1,6 @@
-import Box from "./box.tsx"
+import Box from "./box"
 
-export default function Reader({head, value}) {
+export default function Reader({head, value}:{head:any, value:any}) {
 	return (
 		<Box header={head}>
 			{value}
