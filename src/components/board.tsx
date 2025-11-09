@@ -2,23 +2,32 @@
 import Reader from './reader'
 import React, { useState, useEffect } from 'react'
 
-export default function getReaders() {
-    // TODO: Read arr from somewhere
+export default function Board() {
+  // : Read arr from somewhere
 
-    const [DBC, setDBC] = useState(0)
+  const [DBC, setDBC] = useState(0)
 
-    useEffect(() => {
+  useEffect(() => {
     fetch('/api/dbc').then(res => res.json()).then(data => {
       setDBC(data);
     });
-  }, []);
-    const arr = []
-
-    for (let i = 0; i < 5; ++i) {
-      arr.push(<Reader head={i} value={i} key={i}/>)
+  }, []); //END useEffect
+  const dbc = JSON.parse(JSON.stringify(DBC))
+  const arr = []
+  var it = 0
+  for (const keys in dbc) {
+    // console.log(`${JSON.stringify(dbc[keys])}`)
+    arr.push(<h1 key={it}>{JSON.stringify(keys)}</h1>)
+    it = it +1
+    for (const subKeys in dbc[keys]) {
+      arr.push(<Reader head={JSON.stringify(subKeys)} value={JSON.stringify(dbc[keys][subKeys])} key={it}/>)
+      it = it + 1
     }
-
-
-
-    return <p>{DBC}</p>;
+    arr.push(<br key={it}/>)
+    it = it +1
   }
+
+  
+
+  return arr;
+}

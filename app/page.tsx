@@ -8,7 +8,7 @@ export default function Page() {
         <title>CAN Testbench</title>
       </head>
       <body>
-        <section id="grid">{<Board/>}</section>
+        <section id="grid"><Board></Board></section>
       </body>
     </>
   );
