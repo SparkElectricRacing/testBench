@@ -13,14 +13,16 @@ export default function Board() {
     });
   }, []); //END useEffect
   const dbc = JSON.parse(JSON.stringify(DBC))
+  // console.log(dbc)
   const arr = []
   var it = 0
   for (const keys in dbc) {
     // console.log(`${JSON.stringify(dbc[keys])}`)
-    arr.push(<h1 key={it}>{JSON.stringify(keys)}</h1>)
+    arr.push(<h1 key={it}>{keys}</h1>)
     it = it +1
     for (const subKeys in dbc[keys]) {
-      arr.push(<Reader head={JSON.stringify(subKeys)} value={JSON.stringify(dbc[keys][subKeys])} key={it}/>)
+      // console.log(JSON.stringify(subKeys))
+      arr.push(<Reader head={subKeys} value={JSON.stringify(dbc[keys][subKeys])} key={it}/>)
       it = it + 1
     }
     arr.push(<br key={it}/>)

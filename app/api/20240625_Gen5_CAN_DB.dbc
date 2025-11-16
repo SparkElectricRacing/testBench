@@ -100,7 +100,7 @@ BO_ 170 M170_Internal_States: 8 INV
  SG_ INV_Limit_Stall_Burst_Model : 63|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ INV_Burst_Model_Mode : 49|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ INV_Key_Switch_Start_Status : 54|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ INV_BMS_Limiting_Regen_Torque : 50|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ INV_BMS_Limiting_Regen_Torque : 50|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 169 M169_Internal_Voltages: 8 INV
  SG_ INV_Ref_Voltage_12_0 : 48|16@1- (0.01,0) [-327.68|327.67] "voltage:V" Vector__XXX
