@@ -1,6 +1,8 @@
 'use client'
-import Reader from './reader'
+import Msg from './message';
+
 import React, { useState, useEffect } from 'react'
+import { FaPlay, FaStop } from "react-icons/fa";
 
 export default function Board() {
   // : Read arr from somewhere
@@ -18,14 +20,10 @@ export default function Board() {
   var it = 0
   for (const keys in dbc) {
     // console.log(`${JSON.stringify(dbc[keys])}`)
-    arr.push(<h1 key={it}>{keys}</h1>)
-    it = it +1
-    for (const subKeys in dbc[keys]) {
+    arr.push(<Msg header={keys} dbc={dbc} key={keys} inactIcon={<FaPlay className="icon"/>} actIcon={<FaStop className='icon'/>}/>)
       // console.log(JSON.stringify(subKeys))
-      arr.push(<Reader head={subKeys} value={JSON.stringify(dbc[keys][subKeys])} key={it}/>)
-      it = it + 1
-    }
-    arr.push(<br key={it}/>)
+    
+    
     it = it +1
   }
 
