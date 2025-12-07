@@ -20,8 +20,30 @@ export default function Msg({ header, dbc, actIcon, inactIcon }: { header: any, 
         // } else {
         //     but!.style.backgroundColor = "red";
         // }
-        console.log(isSending);
+        console.log(!isSending);
+
+        if(!isSending){
+            const subObj = [];
+            for(const subKeys in dbc[header]){
+                subObj.push(`${subKeys}: ${(document.getElementById(`${subKeys}`) as HTMLInputElement).value}`)
+            }
+            const obj = {
+                header: subObj
+            }
+            sndMsg(obj)
+        }
     }
+
+    function sndMsg(obj : Object){
+        fetch('/api/dbc/send',{
+            method: 'POST', 
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(obj)
+        })
+    }
+
     return (
         <div>
             <div className="readerFloatbox">
